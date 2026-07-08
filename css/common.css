@@ -16,14 +16,18 @@ img,svg{display:block;}
 .l-header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
 .l-header__inner{display:flex;align-items:center;justify-content:space-between;height:4.125rem;gap:1rem;max-width:none;padding:0 clamp(1.25rem,4vw,3rem);}
 .l-header__logo{height:3rem;width:auto;cursor:pointer;}
-.l-nav{display:flex;align-items:center;gap:.875rem;font-size:.75rem;letter-spacing:.14em;color:var(--ink);font-weight:600;}
-.l-nav a{cursor:pointer;position:relative;white-space:nowrap;transition:color .15s;}
-.l-nav a:not(.l-nav__cta){padding:.375rem .0625rem;display:none;}
-.l-nav a:not(.l-nav__cta)::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--mag);transition:width .25s ease;}
-.l-nav a:not(.l-nav__cta):hover{color:var(--mag-ink);}
-.l-nav a:not(.l-nav__cta):hover::after{width:100%;}
-.l-nav .l-nav__cta{color:var(--paper);background:var(--mag-ink);padding:.6875rem 1.375rem;border-radius:var(--radius);letter-spacing:.12em;transition:background .15s;}
-.l-nav .l-nav__cta:hover{color:var(--paper);background:var(--ink);}
+/* ハンバーガーボタン（SPのみ表示） */
+.l-nav__toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;width:2.75rem;height:2.75rem;margin-right:-.5rem;padding:0;border:none;background:none;cursor:pointer;z-index:60;}
+.l-nav__toggle span{display:block;width:1.5rem;height:2px;margin:0 auto;background:var(--ink);border-radius:2px;transition:transform .25s ease,opacity .2s ease;}
+.l-header.is-menu-open .l-nav__toggle span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.l-header.is-menu-open .l-nav__toggle span:nth-child(2){opacity:0;}
+.l-header.is-menu-open .l-nav__toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+/* ナビ（SP＝ヘッダー下に開くドロップダウン） */
+.l-nav{position:absolute;top:100%;left:0;right:0;display:flex;flex-direction:column;align-items:stretch;background:rgba(255,255,255,.98);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:0 14px 26px rgba(0,0,0,.07);padding:.375rem 0;font-size:.8125rem;letter-spacing:.14em;color:var(--ink);font-weight:600;opacity:0;visibility:hidden;transform:translateY(-.625rem);transition:opacity .22s ease,transform .22s ease,visibility .22s;}
+.l-header.is-menu-open .l-nav{opacity:1;visibility:visible;transform:none;}
+.l-nav a{display:block;padding:.9375rem clamp(1.25rem,5vw,3rem);cursor:pointer;position:relative;white-space:nowrap;transition:color .15s,background .15s;}
+.l-nav a:not(.l-nav__cta):hover,.l-nav a:not(.l-nav__cta):active{color:var(--mag-ink);background:var(--paper-shade);}
+.l-nav .l-nav__cta{color:var(--mag-ink);font-weight:700;}
 
 /* --- フッター --- */
 .l-footer{background:var(--ink);color:var(--on-dark);padding:5.5rem 0 4.75rem;}
@@ -45,8 +49,15 @@ img,svg{display:block;}
 /* 641px〜：ヘッダーの余白・ナビをPC相当に */
 @media(min-width:641px){
   .l-container{padding:0 1.75rem;}
-  .l-nav{gap:1.875rem;font-size:.8125rem;}
-  .l-nav a:not(.l-nav__cta){display:block;}
+  .l-nav__toggle{display:none;}
+  /* ナビを横並びバーに戻す */
+  .l-nav{position:static;flex-direction:row;align-items:center;gap:1.875rem;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border:none;box-shadow:none;padding:0;opacity:1;visibility:visible;transform:none;}
+  .l-nav a{padding:.375rem .0625rem;}
+  .l-nav a:not(.l-nav__cta)::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--mag);transition:width .25s ease;}
+  .l-nav a:not(.l-nav__cta):hover{color:var(--mag-ink);background:none;}
+  .l-nav a:not(.l-nav__cta):hover::after{width:100%;}
+  .l-nav .l-nav__cta{color:var(--paper);background:var(--mag-ink);padding:.6875rem 1.375rem;border-radius:var(--radius);letter-spacing:.12em;transition:background .15s;}
+  .l-nav .l-nav__cta:hover{color:var(--paper);background:var(--ink);}
 }
 /* 768px〜：固定ロゴバッジを少し大きく */
 @media(min-width:768px){
