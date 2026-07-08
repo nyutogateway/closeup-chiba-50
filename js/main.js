@@ -142,7 +142,7 @@ function initCarousel(grp){
     if(pos>=len+SHOW){pos=SHOW;apply(false);}
     else if(pos<SHOW){pos=len+SHOW-1;apply(false);}
   });
-  function start(){stop();timer=setInterval(()=>go(1),3500);}
+  function start(){stop();timer=setInterval(()=>go(1),1000);}
   function stop(){if(timer)clearInterval(timer);timer=null;}
   grp.querySelector('.p-group__prev').addEventListener('click',()=>{go(-1);start();});
   grp.querySelector('.p-group__next').addEventListener('click',()=>{go(1);start();});
