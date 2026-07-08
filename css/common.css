@@ -41,7 +41,7 @@ img,svg{display:block;}
 .l-footer__note{margin-top:.75rem;font-size:.625rem;letter-spacing:.04em;color:var(--on-dark-faint);}
 
 /* --- チバテレ固定ロゴバッジ（常時表示） --- */
-.c-tv-badge{position:fixed;left:50%;bottom:.875rem;transform:translateX(-50%);z-index:35;line-height:0;opacity:.55;transition:opacity .2s ease;}
+.c-tv-badge{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:35;line-height:0;opacity:.55;transition:opacity .2s ease;}
 .c-tv-badge img{height:2rem;width:auto;display:block;}
 .c-tv-badge:hover{opacity:.9;}
 
@@ -61,7 +61,6 @@ img,svg{display:block;}
 }
 /* 768px〜：固定ロゴバッジを少し大きく */
 @media(min-width:768px){
-  .c-tv-badge{bottom:1.375rem;}
   .c-tv-badge img{height:2.75rem;}
 }
 
