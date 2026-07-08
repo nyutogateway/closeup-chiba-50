@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>クローズアップCHIBA50 ｜ 千葉を牽引するものたち</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/_variables.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/page.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <img class="logo-img" src="assets/logo.png" alt="クローズアップ千葉50 ― 千葉を牽引するものたち" onclick="goHome()">
+    <nav class="nav">
+      <a onclick="goSection('#concept')">CONCEPT</a>
+      <a onclick="goSection('#leaders')">LEADERS</a>
+      <a class="cta" href="contact.html">CONTACT</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="logowall" id="logowall" aria-hidden="true"></div>
+    <div class="hero-spot" id="spot" aria-hidden="true"></div>
+    <div class="hero-vig" aria-hidden="true"></div>
+    <div class="hero-c">
+      <img class="hero-logo" src="assets/logo.png" alt="クローズアップ千葉50 ― 千葉を牽引するものたち">
+      <div class="prism"></div>
+    </div>
+    <div class="scroll">SCROLL</div>
+  </section>
+
+  <div class="wrap">
+    <section class="intro" id="concept">
+      <p class="intro-kick reveal">CONCEPT</p>
+      <h2 class="intro-lead serif reveal">クローズアップCHIBA50とは？</h2>
+      <div class="intro-body reveal">
+        <p>今なお世界有数の大都市圏を形成する、日本に誇る都道府県のひとつ、千葉県。古くは将軍家のお膝元となった江戸の発展を支えてきました。</p>
+        <p>そんな千葉県を牽引する今注目の企業や専門家等をクローズアップし、さらなる千葉県の成長のヒントを探っていきます。</p>
+      </div>
+    </section>
+
+    <section class="filters" id="leaders">
+      <div class="fbar reveal">
+        <p class="fbar-kick">LEADERS</p>
+        <h2 class="serif">千葉を牽引する<span class="fbar-n">50</span>社</h2>
+        <div class="fbar-line"></div>
+      </div>
+    </section>
+
+    <div id="groups"></div>
+  </div>
+
+  <footer class="ft">
+    <div class="wrap ft-in">
+      <span class="ft-plate"><img class="ft-logo" src="assets/footer_logo.png" alt="チバテレ 千葉テレビ放送"></span>
+      <div class="ft-links">
+        <a href="contact.html">お問い合わせ</a>
+        <span class="ft-sep">／</span>
+        <a href="policy.html">プライバシーポリシー</a>
+      </div>
+      <div class="ft-cr">Copyright © Chiba Television broadcasting Corp.</div>
+    </div>
+  </footer>
+</main>
+
+<article id="detail" class="wrap"></article>
+
+<a class="tv-badge" href="https://www.chiba-tv.com/" target="_blank" rel="noopener" aria-label="チバテレ 千葉テレビ放送">
+  <img src="assets/footer_logo.png" alt="チバテレ 千葉テレビ放送">
+</a>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
