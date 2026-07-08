@@ -174,8 +174,8 @@
   .p-group__view{padding:2.25rem 1.625rem;}
   .p-group__track{gap:1.625rem;}
   /* 中央を少し拡大＋両隣を縮小して相対的に約1.3倍に。transformのみでレイアウトは不変＝重なり・ズレなし */
-  .p-group__track .p-card{flex:0 0 calc((100% - 3.25rem)/3);transform:scale(.84);transition:transform .5s cubic-bezier(.22,.61,.36,1);}
-  .p-group__track .p-card.is-center{transform:scale(1.18);z-index:3;}
+  .p-group__track .p-card{flex:0 0 calc((100% - 3.25rem)/3);transform:scale(.86);transition:transform .5s cubic-bezier(.22,.61,.36,1);}
+  .p-group__track .p-card.is-center{transform:scale(1.12);z-index:3;}
   .p-card__caption{opacity:0;transform:translateY(.375rem);transition:opacity .3s ease,transform .3s ease,background .3s ease;}
   .p-card:hover .p-card__caption{opacity:1;transform:none;}
   .p-group__track .p-card.is-center .p-card__caption{opacity:1;transform:none;} /* 中央は常にキャプション表示 */
