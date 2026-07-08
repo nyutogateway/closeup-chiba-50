@@ -32,17 +32,17 @@ function wideSvg(no){
     const cell=d.photo
       ? `<img src="${esc(d.photo)}" alt="" loading="lazy">`
       : `<span>${esc(d.corp.replace(/^(株式会社|有限会社|学校法人|社会福祉法人)/,'').slice(0,5))}</span>`;
-    html+=`<div class="mark">${cell}</div>`;
+    html+=`<div class="p-hero__mark">${cell}</div>`;
   }
   wall.innerHTML=html;
 
-  const marks=[...wall.querySelectorAll('.mark')];
+  const marks=[...wall.querySelectorAll('.p-hero__mark')];
 
   const RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(RM){ marks.slice(0,4).forEach(m=>m.classList.add('lit')); return; }
+  if(RM){ marks.slice(0,4).forEach(m=>m.classList.add('is-lit')); return; }
 
   // スポットライトが中心のまわりを周回し、光が当たった各社ロゴだけを点灯させる。
-  const hero=document.querySelector('.hero');
+  const hero=document.querySelector('.p-hero');
   const spot=document.getElementById('spot');
 
   // タイル中心を hero 基準で事前計算（リサイズ時のみ再計算）
@@ -70,8 +70,8 @@ function wideSvg(no){
     const rr2=(MIND*HITR)*(MIND*HITR);
     for(let i=0;i<cen.length;i++){
       const c=cen[i], dx=c.x-sx, dy=c.y-sy;
-      if(dx*dx+dy*dy<rr2) marks[i].classList.add('lit');
-      else marks[i].classList.remove('lit');
+      if(dx*dx+dy*dy<rr2) marks[i].classList.add('is-lit');
+      else marks[i].classList.remove('is-lit');
     }
     requestAnimationFrame(frame);
   }
@@ -83,10 +83,10 @@ function cardHTML(d){
   const who=[d.role,d.name].filter(Boolean).join('　');
   const ph=d.photo?`<img src="${esc(d.photo)}" alt="${esc(d.corp)}" loading="lazy">`:phSvg(d.no);
   return `
-    <div class="card" role="button" tabindex="0" onclick="openCard(${d.no})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCard(${d.no});}" aria-label="No.${n2(d.no)} ${esc(d.corp)}">
-      <div class="card-ph">${ph}${d.star?`<span class="card-star" aria-label="注目企業 ★${d.star}">${'★'.repeat(d.star)}</span>`:''}<div class="card-cap">${esc(d.head)}</div></div>
-      <div class="card-nm serif">${esc(d.corp)}</div>
-      ${who?`<div class="card-co">${esc(who)}</div>`:''}
+    <div class="p-card" role="button" tabindex="0" onclick="openCard(${d.no})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCard(${d.no});}" aria-label="No.${n2(d.no)} ${esc(d.corp)}">
+      <div class="p-card__photo">${ph}${d.star?`<span class="p-card__star" aria-label="注目企業 ★${d.star}">${'★'.repeat(d.star)}</span>`:''}<div class="p-card__caption">${esc(d.head)}</div></div>
+      <div class="p-card__name u-serif">${esc(d.corp)}</div>
+      ${who?`<div class="p-card__company">${esc(who)}</div>`:''}
     </div>`;
 }
 function renderGrid(){
@@ -99,22 +99,22 @@ function renderGrid(){
     groups.push(DATA.slice(idx,idx+size)); idx+=size;
   }
   wrap.innerHTML=groups.map((grp,gi)=>`
-    <div class="grp reveal">
-      <div class="grp-head"><span class="grp-label">GROUP</span><span class="grp-num">${n2(gi+1)}</span></div>
-      <div class="grp-view"><div class="grp-track">${grp.map(cardHTML).join('')}</div></div>
-      <div class="grp-nav">
-        <button type="button" class="grp-btn grp-prev" aria-label="前へ"><span>‹</span></button>
-        <span class="grp-count"><b class="grp-cur">1</b><i>/</i>${grp.length}</span>
-        <button type="button" class="grp-btn grp-next" aria-label="次へ"><span>›</span></button>
+    <div class="p-group u-reveal">
+      <div class="p-group__head"><span class="p-group__label">GROUP</span><span class="p-group__num">${n2(gi+1)}</span></div>
+      <div class="p-group__view"><div class="p-group__track">${grp.map(cardHTML).join('')}</div></div>
+      <div class="p-group__nav">
+        <button type="button" class="p-group__btn p-group__prev" aria-label="前へ"><span>‹</span></button>
+        <span class="p-group__count"><b class="p-group__current">1</b><i>/</i>${grp.length}</span>
+        <button type="button" class="p-group__btn p-group__next" aria-label="次へ"><span>›</span></button>
       </div>
     </div>`).join('');
-  wrap.querySelectorAll('.grp').forEach(initCarousel);
+  wrap.querySelectorAll('.p-group').forEach(initCarousel);
 }
 
 // 各グループの自動カルーセル（3枚表示・数秒送り・無限ループ・ボタン）
 function initCarousel(grp){
-  const track=grp.querySelector('.grp-track');
-  const curEl=grp.querySelector('.grp-cur');
+  const track=grp.querySelector('.p-group__track');
+  const curEl=grp.querySelector('.p-group__current');
   const originals=[...track.children];
   const len=originals.length;
   const SHOW=5;                              // クローン数（最大表示枚数）
@@ -143,8 +143,8 @@ function initCarousel(grp){
   });
   function start(){stop();timer=setInterval(()=>go(1),3500);}
   function stop(){if(timer)clearInterval(timer);timer=null;}
-  grp.querySelector('.grp-prev').addEventListener('click',()=>{go(-1);start();});
-  grp.querySelector('.grp-next').addEventListener('click',()=>{go(1);start();});
+  grp.querySelector('.p-group__prev').addEventListener('click',()=>{go(-1);start();});
+  grp.querySelector('.p-group__next').addEventListener('click',()=>{go(1);start();});
   grp.addEventListener('mouseenter',stop);
   grp.addEventListener('mouseleave',start);
   window.addEventListener('resize',()=>apply(false));
@@ -163,32 +163,32 @@ function openCard(no){
   // 本文（最初のセクションは記事タイトルと重複するため見出しを省略）
   const body=(d.secs||[]).map((s,idx)=>{
     const ps=s.ps.map(p=>`<p>${esc(p)}</p>`).join('');
-    const imgs=(s.imgs||[]).map(src=>`<figure class="d-fig"><img src="${esc(src)}" alt="" loading="lazy"></figure>`).join('');
-    const h=idx===0?'':`<h3 class="serif">${esc(s.h)}</h3>`;
+    const imgs=(s.imgs||[]).map(src=>`<figure class="p-article__figure"><img src="${esc(src)}" alt="" loading="lazy"></figure>`).join('');
+    const h=idx===0?'':`<h3 class="u-serif">${esc(s.h)}</h3>`;
     return h+ps+imgs;
   }).join('');
   const art=document.getElementById('detail');
   art.innerHTML=`
-    <div class="d-hero">
+    <div class="p-article__hero">
       ${d.hero?`<img src="${esc(d.hero)}" alt="${esc(d.corp)}">`:wideSvg(d.no)}
-      <div class="d-hero-cap">
-        ${d.star?`<p class="d-stars">${'★'.repeat(d.star)}</p>`:''}
-        <p class="d-corp">${esc(d.corp)}</p>
-        <h1 class="d-title serif">${esc(d.head)}</h1>
-        ${who?`<p class="d-person">${esc(who)}</p>`:''}
+      <div class="p-article__hero-caption">
+        ${d.star?`<p class="p-article__stars">${'★'.repeat(d.star)}</p>`:''}
+        <p class="p-article__corp">${esc(d.corp)}</p>
+        <h1 class="p-article__title u-serif">${esc(d.head)}</h1>
+        ${who?`<p class="p-article__person">${esc(who)}</p>`:''}
       </div>
     </div>
-    <div class="d-body">${body}</div>
-    <section class="d-info">
-      <div class="ih">COMPANY DATA</div>
-      <p class="dc-name serif">${esc(d.corp)}</p>
-      ${d.name?`<p class="dc-rep">${esc(d.name)}${d.role?'（'+esc(d.role)+'）':''}</p>`:''}
-      ${d.prof?`<p class="dc-prof">${esc(d.prof)}</p>`:''}
-      ${d.url?`<p class="dc-url"><a class="lk" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.url)}　↗</a></p>`:''}
+    <div class="p-article__body">${body}</div>
+    <section class="p-article__info">
+      <div class="p-article__data-head">COMPANY DATA</div>
+      <p class="p-article__data-name u-serif">${esc(d.corp)}</p>
+      ${d.name?`<p class="p-article__data-rep">${esc(d.name)}${d.role?'（'+esc(d.role)+'）':''}</p>`:''}
+      ${d.prof?`<p class="p-article__data-prof">${esc(d.prof)}</p>`:''}
+      ${d.url?`<p class="p-article__data-url"><a class="c-link" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.url)}　↗</a></p>`:''}
     </section>
-    <nav class="d-nav">
-      <button onclick="openCard(${prev.no})"><span class="dir">← PREV ｜ No.${n2(prev.no)}</span><span class="t serif">${esc(prev.corp)}</span></button>
-      <button class="nx" onclick="openCard(${next.no})"><span class="dir">NEXT ｜ No.${n2(next.no)} →</span><span class="t serif">${esc(next.corp)}</span></button>
+    <nav class="p-article__nav">
+      <button onclick="openCard(${prev.no})"><span class="p-article__nav-dir">← PREV ｜ No.${n2(prev.no)}</span><span class="p-article__nav-title u-serif">${esc(prev.corp)}</span></button>
+      <button class="p-article__nav-next" onclick="openCard(${next.no})"><span class="p-article__nav-dir">NEXT ｜ No.${n2(next.no)} →</span><span class="p-article__nav-title u-serif">${esc(next.corp)}</span></button>
     </nav>`;
   document.getElementById('home').style.display='none';
   art.style.display='block';
@@ -223,9 +223,9 @@ window.addEventListener('popstate',()=>{ if(!location.hash) goHome(); else fromH
   const concept=document.getElementById('concept');
   const home=document.getElementById('home');
   if(!concept||!home)return;
-  if(!('IntersectionObserver' in window)){home.classList.add('map-on');return;}
+  if(!('IntersectionObserver' in window)){home.classList.add('is-map-on');return;}
   const io=new IntersectionObserver(es=>{
-    if(es.some(e=>e.isIntersecting)){home.classList.add('map-on');io.disconnect();}
+    if(es.some(e=>e.isIntersecting)){home.classList.add('is-map-on');io.disconnect();}
   },{threshold:.4});
   io.observe(concept);
 })();
@@ -234,7 +234,7 @@ renderGrid();
 
 // スクロールで各要素をふわっと表示
 (function(){
-  const targets=document.querySelectorAll('.reveal');
+  const targets=document.querySelectorAll('.u-reveal');
   if(!('IntersectionObserver' in window)){targets.forEach(t=>t.classList.add('is-in'));return;}
   const io=new IntersectionObserver((es,obs)=>{
     es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');obs.unobserve(e.target);}});

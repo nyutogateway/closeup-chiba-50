@@ -10,63 +10,63 @@
 </head>
 <body>
 
-<header class="hdr">
-  <div class="wrap hdr-in">
-    <a href="index.html"><img class="logo-img" src="assets/logo.png" alt="クローズアップCHIBA50"></a>
-    <nav class="nav">
+<header class="l-header">
+  <div class="l-container l-header__inner">
+    <a href="index.html"><img class="l-header__logo" src="assets/logo.png" alt="クローズアップCHIBA50"></a>
+    <nav class="l-nav">
       <a href="index.html#concept">CONCEPT</a>
       <a href="index.html#leaders">LEADERS</a>
-      <a class="cta" href="contact.html">CONTACT</a>
+      <a class="l-nav__cta" href="contact.html">CONTACT</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap">
-  <div class="page-in">
-    <a class="d-back" href="index.html"><span>←</span> トップへ戻る</a>
-    <p class="page-kick">CONTACT</p>
-    <h1 class="page-title serif">お問い合わせ</h1>
-    <p class="page-lead">クローズアップCHIBA50への取材のご依頼、番組・記事に関するご意見・ご要望は、下記の運営事務局までお願いいたします。</p>
-    <dl class="page-info">
+<main class="l-container">
+  <div class="p-page__inner">
+    <a class="p-article__back" href="index.html"><span>←</span> トップへ戻る</a>
+    <p class="p-page__kick">CONTACT</p>
+    <h1 class="p-page__title u-serif">お問い合わせ</h1>
+    <p class="p-page__lead">クローズアップCHIBA50への取材のご依頼、番組・記事に関するご意見・ご要望は、下記の運営事務局までお願いいたします。</p>
+    <dl class="p-page__info">
       <dt>運営</dt><dd>クローズアップCHIBA 事務局</dd>
-      <dt>メール</dt><dd><a class="lk" href="mailto:info@blue-agency.jp">info@blue-agency.jp</a></dd>
+      <dt>メール</dt><dd><a class="c-link" href="mailto:info@blue-agency.jp">info@blue-agency.jp</a></dd>
     </dl>
-    <form class="cform" onsubmit="return cformSubmit(this)">
-      <h2 class="cf-h">フォームからのお問い合わせ</h2>
-      <div class="cf-row">
-        <label for="cfName">お名前 <span class="cf-req">必須</span></label>
+    <form class="p-form" onsubmit="return cformSubmit(this)">
+      <h2 class="p-form__heading">フォームからのお問い合わせ</h2>
+      <div class="p-form__row">
+        <label for="cfName">お名前 <span class="p-form__required">必須</span></label>
         <input id="cfName" type="text" name="name" required autocomplete="name">
       </div>
-      <div class="cf-row">
-        <label for="cfMail">メールアドレス <span class="cf-req">必須</span></label>
+      <div class="p-form__row">
+        <label for="cfMail">メールアドレス <span class="p-form__required">必須</span></label>
         <input id="cfMail" type="email" name="email" required autocomplete="email" placeholder="example@chiba-tv.com">
       </div>
-      <div class="cf-row">
-        <label for="cfBody">お問い合わせ内容 <span class="cf-req">必須</span></label>
+      <div class="p-form__row">
+        <label for="cfBody">お問い合わせ内容 <span class="p-form__required">必須</span></label>
         <textarea id="cfBody" name="body" rows="6" required></textarea>
       </div>
-      <button type="submit" class="cf-submit">送信する</button>
-      <p class="cf-done" id="cfDone" hidden>お問い合わせを受け付けました。担当者より折り返しご連絡いたします。<br><small>※ これはデザイン確認用のプロトタイプです。実際には送信されません。</small></p>
+      <button type="submit" class="p-form__submit">送信する</button>
+      <p class="p-form__done" id="cfDone" hidden>お問い合わせを受け付けました。担当者より折り返しご連絡いたします。<br><small>※ これはデザイン確認用のプロトタイプです。実際には送信されません。</small></p>
     </form>
-    <p class="page-note">※ 当運営事務局は、ウェブサイトに情報を掲載するにあたり十分に確認作業を行っておりますが、その内容の正確性・有用性・安全性等について保証するものではありません。掲載情報の利用により生じたトラブルや損害について、当社は一切責任を負いません。</p>
+    <p class="p-page__note">※ 当運営事務局は、ウェブサイトに情報を掲載するにあたり十分に確認作業を行っておりますが、その内容の正確性・有用性・安全性等について保証するものではありません。掲載情報の利用により生じたトラブルや損害について、当社は一切責任を負いません。</p>
   </div>
 </main>
 
-<footer class="ft">
-  <div class="wrap ft-in">
-    <span class="ft-plate"><img class="ft-logo" src="assets/footer_logo.png" alt="チバテレ 千葉テレビ放送"></span>
-    <div class="ft-links">
+<footer class="l-footer">
+  <div class="l-container l-footer__inner">
+    <span class="l-footer__plate"><img class="l-footer__logo" src="assets/footer_logo.png" alt="チバテレ 千葉テレビ放送"></span>
+    <div class="l-footer__links">
       <a href="contact.html">お問い合わせ</a>
-      <span class="ft-sep">／</span>
+      <span class="l-footer__sep">／</span>
       <a href="policy.html">プライバシーポリシー</a>
     </div>
-    <div class="ft-cr">Copyright © Chiba Television broadcasting Corp.</div>
+    <div class="l-footer__copyright">Copyright © Chiba Television broadcasting Corp.</div>
   </div>
 </footer>
 
 <script>
 function cformSubmit(f){
-  f.querySelector('.cf-submit').disabled=true;
+  f.querySelector('.p-form__submit').disabled=true;
   document.getElementById('cfDone').hidden=false;
   document.getElementById('cfDone').scrollIntoView({behavior:'smooth',block:'center'});
   return false; // プロトタイプのため実送信はしない

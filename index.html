@@ -13,66 +13,66 @@
 </head>
 <body>
 
-<header class="hdr">
-  <div class="wrap hdr-in">
-    <img class="logo-img" src="assets/logo.png" alt="クローズアップ千葉50 ― 千葉を牽引するものたち" onclick="goHome()">
-    <nav class="nav">
+<header class="l-header">
+  <div class="l-container l-header__inner">
+    <img class="l-header__logo" src="assets/logo.png" alt="クローズアップ千葉50 ― 千葉を牽引するものたち" onclick="goHome()">
+    <nav class="l-nav">
       <a onclick="goSection('#concept')">CONCEPT</a>
       <a onclick="goSection('#leaders')">LEADERS</a>
-      <a class="cta" href="contact.html">CONTACT</a>
+      <a class="l-nav__cta" href="contact.html">CONTACT</a>
     </nav>
   </div>
 </header>
 
 <main id="home">
-  <section class="hero">
-    <div class="logowall" id="logowall" aria-hidden="true"></div>
-    <div class="hero-spot" id="spot" aria-hidden="true"></div>
-    <div class="hero-vig" aria-hidden="true"></div>
-    <div class="hero-c">
-      <img class="hero-logo" src="assets/logo.png" alt="クローズアップ千葉50 ― 千葉を牽引するものたち">
-      <div class="prism"></div>
+  <section class="p-hero">
+    <div class="p-hero__wall" id="logowall" aria-hidden="true"></div>
+    <div class="p-hero__spot" id="spot" aria-hidden="true"></div>
+    <div class="p-hero__vignette" aria-hidden="true"></div>
+    <div class="p-hero__content">
+      <img class="p-hero__logo" src="assets/logo.png" alt="クローズアップ千葉50 ― 千葉を牽引するものたち">
+      <div class="p-hero__prism"></div>
     </div>
-    <div class="scroll">SCROLL</div>
+    <div class="p-hero__scroll">SCROLL</div>
   </section>
 
-  <div class="wrap">
-    <section class="intro" id="concept">
-      <p class="intro-kick reveal">CONCEPT</p>
-      <h2 class="intro-lead serif reveal">クローズアップCHIBA50とは？</h2>
-      <div class="intro-body reveal">
+  <div class="l-container">
+    <section class="p-concept" id="concept">
+      <p class="p-concept__kick u-reveal">CONCEPT</p>
+      <h2 class="p-concept__lead u-serif u-reveal">クローズアップCHIBA50とは？</h2>
+      <div class="p-concept__body u-reveal">
         <p>今なお世界有数の大都市圏を形成する、日本に誇る都道府県のひとつ、千葉県。古くは将軍家のお膝元となった江戸の発展を支えてきました。</p>
         <p>そんな千葉県を牽引する今注目の企業や専門家等をクローズアップし、さらなる千葉県の成長のヒントを探っていきます。</p>
       </div>
     </section>
 
-    <section class="filters" id="leaders">
-      <div class="fbar reveal">
-        <p class="fbar-kick">LEADERS</p>
-        <h2 class="serif">千葉を牽引する<span class="fbar-n">50</span>社</h2>
-        <div class="fbar-line"></div>
+    <section class="p-leaders" id="leaders">
+      <div class="p-leaders__bar u-reveal">
+        <p class="p-leaders__kick">LEADERS</p>
+        <h2 class="u-serif">千葉を牽引する<span class="p-leaders__num">50</span>社</h2>
+        <div class="p-leaders__line"></div>
       </div>
     </section>
 
     <div id="groups"></div>
   </div>
 
-  <footer class="ft">
-    <div class="wrap ft-in">
-      <span class="ft-plate"><img class="ft-logo" src="assets/footer_logo.png" alt="チバテレ 千葉テレビ放送"></span>
-      <div class="ft-links">
+  <footer class="l-footer">
+    <div class="l-container l-footer__inner">
+      <span class="l-footer__plate"><img class="l-footer__logo" src="assets/footer_logo.png" alt="チバテレ 千葉テレビ放送"></span>
+      <div class="l-footer__links">
         <a href="contact.html">お問い合わせ</a>
-        <span class="ft-sep">／</span>
+        <span class="l-footer__sep">／</span>
         <a href="policy.html">プライバシーポリシー</a>
       </div>
-      <div class="ft-cr">Copyright © Chiba Television broadcasting Corp.</div>
+      <div class="l-footer__copyright">Copyright © Chiba Television broadcasting Corp.</div>
     </div>
   </footer>
 </main>
 
-<article id="detail" class="wrap"></article>
+<article id="detail" class="l-container"></article>
 
-<a class="tv-badge" href="https://www.chiba-tv.com/" target="_blank" rel="noopener" aria-label="チバテレ 千葉テレビ放送">
+<a class="c-tv-badge" href="https://www.chiba-tv.com/" target="_blank" rel="noopener" aria-label="チバテレ 千葉テレビ放送">
   <img src="assets/footer_logo.png" alt="チバテレ 千葉テレビ放送">
 </a>
 
