@@ -30,10 +30,9 @@ img,svg{display:block;}
 .l-footer__inner{text-align:center;}
 .l-footer__plate{display:inline-block;background:var(--paper);border-radius:.875rem;padding:1rem 1.625rem;line-height:0;box-shadow:0 6px 22px rgba(0,0,0,.3);}
 .l-footer__logo{width:clamp(7.5rem,22vw,10.5rem);height:auto;display:block;}
-.l-footer__links{margin-top:1.5rem;display:flex;justify-content:center;align-items:center;gap:.75rem;font-size:.75rem;letter-spacing:.06em;}
+.l-footer__links{margin-top:1.5rem;display:flex;justify-content:center;align-items:center;gap:1.75rem;font-size:.75rem;letter-spacing:.1em;}
 .l-footer__links a{cursor:pointer;color:var(--on-dark-muted);transition:color .15s;}
 .l-footer__links a:hover{color:var(--paper);}
-.l-footer__sep{color:var(--on-dark-faint);}
 .l-footer__copyright{margin-top:1.25rem;font-size:.71875rem;letter-spacing:.05em;color:var(--on-dark-muted);}
 .l-footer__note{margin-top:.75rem;font-size:.625rem;letter-spacing:.04em;color:var(--on-dark-faint);}
 
