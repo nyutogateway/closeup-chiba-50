@@ -122,33 +122,22 @@ function initCarousel(grp){
   if(len<=SHOW)return;
   originals.slice(-SHOW).map(c=>c.cloneNode(true)).forEach(c=>{c.setAttribute('aria-hidden','true');track.insertBefore(c,track.firstChild);});
   originals.slice(0,SHOW).map(c=>c.cloneNode(true)).forEach(c=>{c.setAttribute('aria-hidden','true');track.appendChild(c);});
-  let pos=SHOW, animating=false, timer=null, tx=0;
-  const view=grp.querySelector('.p-group__view');
-  const focus=()=>window.innerWidth>=641;              // 中央拡大はPCのみ（SPは1枚なので拡大しない）
+  let pos=SHOW, animating=false, timer=null;
+  const stepPx=()=>{const f=track.children[0];const gap=parseFloat(getComputedStyle(track).gap)||0;return f.offsetWidth+gap;};
   function apply(anim){
+    track.style.transition=anim?'transform .6s cubic-bezier(.22,.61,.36,1)':'none';
+    track.style.transform=`translateX(${-pos*stepPx()}px)`;
     const c0=pos+Math.floor(cols()/2);
-    // 中央カードを1.3倍にする分、両隣の隙間が詰まらないよう中央に左右余白を足す（片側0.15W）
-    const cells=[...track.children];
-    const pad=focus()?(cells[0].offsetWidth||0)*0.15:0;
-    cells.forEach((c,i)=>{
-      const center=i===c0;
-      c.classList.toggle('is-center',center);
+    [...track.children].forEach((c,i)=>{
+      c.classList.toggle('is-center',i===c0);
       c.classList.toggle('is-prev',i===c0-1);
       c.classList.toggle('is-next',i===c0+1);
-      c.style.marginLeft=center?pad+'px':'';
-      c.style.marginRight=center?pad+'px':'';
     });
-    // 実測でc0カードのレイアウト中心をビュー中心に合わせる（拡大・余白があってもズレない）
-    track.style.transition=anim?'transform .6s cubic-bezier(.22,.61,.36,1)':'none';
-    const card=track.children[c0];
-    const vr=view.getBoundingClientRect(), tr=track.getBoundingClientRect();
-    tx+=(vr.left+vr.width/2)-(tr.left+card.offsetLeft+card.offsetWidth/2);
-    track.style.transform=`translateX(${tx}px)`;
     if(curEl)curEl.textContent=((c0-SHOW)%len+len)%len+1;
   }
   function go(n){if(animating)return;animating=true;pos+=n;apply(true);}
   track.addEventListener('transitionend',e=>{
-    if(e.target!==track||e.propertyName!=='transform')return;  // カード側のtransition（margin等）は無視
+    if(e.target!==track||e.propertyName!=='transform')return;  // カード側のtransition（scale等）は無視
     animating=false;
     if(pos>=len+SHOW){pos=SHOW;apply(false);}
     else if(pos<SHOW){pos=len+SHOW-1;apply(false);}
