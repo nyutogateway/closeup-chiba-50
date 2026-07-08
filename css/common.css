@@ -210,8 +210,8 @@ svg {
 /* --- チバテレ固定ロゴバッジ（常時表示） --- */
 .c-tv-badge {
   position: fixed;
-  left: 87%;
-  top: 40%;
+  left: 76%;
+  top: 46%;
   transform: translate(-50%, -50%);
   z-index: -1;
   line-height: 0;
@@ -219,7 +219,7 @@ svg {
   pointer-events: none;
 }
 .c-tv-badge img {
-  height: 5rem;
+  height: 2.75rem;
   width: auto;
   display: block;
 }
@@ -282,10 +282,14 @@ svg {
     background: var(--ink);
   }
 }
-/* 768px〜：固定ロゴバッジを少し大きく */
-@media (min-width: 768px) {
+/* 641px〜（タブレット/PC）：バッジは指定位置・大きめに */
+@media (min-width: 641px) {
+  .c-tv-badge {
+    left: 87%;
+    top: 40%;
+  }
   .c-tv-badge img {
-    height: 4rem;
+    height: 5rem;
   }
 }
 
