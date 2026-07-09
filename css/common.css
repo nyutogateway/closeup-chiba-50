@@ -64,7 +64,7 @@ svg {
   padding: 0 clamp(1.25rem, 4vw, 3rem);
 }
 .l-header__logo {
-  height: 3rem;
+  height: 2.5rem;
   width: auto;
   cursor: pointer;
 }
@@ -233,6 +233,9 @@ body.is-detail .c-tv-badge {
 @media (min-width: 641px) {
   .l-container {
     padding: 0 1.75rem;
+  }
+  .l-header__logo {
+    height: 3rem;
   }
   .l-nav__toggle {
     display: none;
