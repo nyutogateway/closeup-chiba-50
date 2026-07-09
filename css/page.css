@@ -36,7 +36,7 @@
 /* --- 千葉県シルエットの背景（トップのみ・CONCEPT到達でスライドイン） --- */
 #home{position:relative;}
 /* 千葉県地図の背景。SPは小さめ・薄めで表示、641px以上で通常サイズ */
-#home::before{content:"";display:block;position:fixed;z-index:-1;top:7rem;right:-2.5rem;width:min(58vw,20rem);height:70vh;background:url(../assets/chiba.svg) center right/contain no-repeat;opacity:0;transform:translateX(4.375rem);transition:opacity .9s ease,transform 1.4s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+#home::before{content:"";display:block;position:fixed;z-index:-2;top:7rem;right:-2.5rem;width:min(58vw,20rem);height:70vh;background:url(../assets/chiba.svg) center right/contain no-repeat;opacity:0;transform:translateX(4.375rem);transition:opacity .9s ease,transform 1.4s cubic-bezier(.16,1,.3,1);pointer-events:none;}
 #home.is-map-on::before{opacity:.16;transform:translateX(0);}
 
 /* --- コンセプト --- */
