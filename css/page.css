@@ -136,14 +136,15 @@
 .p-article__back{font-size:.75rem;color:var(--muted);letter-spacing:.06em;display:inline-flex;align-items:center;gap:.4375rem;cursor:pointer;background:none;border:none;font-family:var(--sans);transition:color .15s;}
 .p-article__back:hover{color:var(--ink);}
 .p-article__back span{color:var(--mag-ink);font-size:.875rem;}
-.p-article__hero{max-width:56.25rem;margin:1.625rem auto 0;aspect-ratio:3/2;overflow:hidden;background:var(--tile);position:relative;}
-.p-article__hero svg{width:100%;height:100%;filter:grayscale(1) contrast(.96);}
-.p-article__hero img{width:100%;height:100%;object-fit:cover;}
-.p-article__hero-caption{position:absolute;left:0;right:0;bottom:0;padding:3.25rem 1.25rem 1.25rem;background:linear-gradient(transparent 0%,rgba(6,2,3,.32) 42%,rgba(6,2,3,.86) 100%);color:var(--paper);}
-.p-article__hero-caption .p-article__stars{color:var(--gold-lt);font-size:1.125rem;letter-spacing:5px;margin-bottom:.75rem;text-shadow:0 0 .5rem rgba(247,206,90,.95),0 0 1.125rem rgba(247,206,90,.6),0 1px .25rem rgba(0,0,0,.45);}
-.p-article__hero-caption .p-article__corp{font-size:.71875rem;letter-spacing:.18em;color:rgba(255,255,255,.82);font-weight:600;margin-bottom:1rem;}
-.p-article__hero-caption .p-article__title{font-family:var(--serif);font-weight:600;font-size:clamp(1.3125rem,2.8vw,2.125rem);line-height:1.55;letter-spacing:.07em;color:var(--paper);text-shadow:0 1px 1.5rem rgba(0,0,0,.45);}
-.p-article__hero-caption .p-article__person{font-size:.78125rem;letter-spacing:.08em;color:rgba(255,255,255,.72);margin-top:1rem;}
+/* SP：画像に重ねず、テキストは画像の下に濃色で配置（641px以上は重ねる） */
+.p-article__hero{max-width:56.25rem;margin:1.625rem auto 0;background:var(--tile);position:relative;}
+.p-article__hero img,.p-article__hero svg{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block;}
+.p-article__hero svg{filter:grayscale(1) contrast(.96);}
+.p-article__hero-caption{padding:1.25rem .125rem 0;color:var(--ink);}
+.p-article__hero-caption .p-article__stars{color:var(--gold-lt);font-size:1.0625rem;letter-spacing:4px;margin-bottom:.5rem;text-shadow:0 0 .5rem rgba(247,206,90,.5);}
+.p-article__hero-caption .p-article__corp{font-size:.6875rem;letter-spacing:.16em;color:var(--mag-ink);font-weight:700;margin-bottom:.625rem;}
+.p-article__hero-caption .p-article__title{font-family:var(--serif);font-weight:700;font-size:clamp(1.375rem,5.6vw,1.75rem);line-height:1.5;letter-spacing:.04em;color:var(--ink);}
+.p-article__hero-caption .p-article__person{font-size:.78125rem;letter-spacing:.06em;color:var(--muted);margin-top:.75rem;}
 .p-article__body{max-width:45rem;margin:3.375rem auto 0;}
 .p-article__body h3{font-family:var(--serif);font-weight:700;font-size:1.28125rem;letter-spacing:.03em;line-height:1.5;margin:3.25rem 0 1.125rem;padding-left:1rem;border-left:3px solid var(--mag);}
 .p-article__body p{font-family:var(--serif);font-size:1.03125rem;line-height:2.25;color:var(--text);margin-bottom:1.375rem;}
@@ -187,7 +188,14 @@
   .p-card:hover .p-card__caption{opacity:1;transform:none;}
   .p-group__track .p-card.is-center .p-card__caption{opacity:1;transform:none;} /* 中央は常にキャプション表示 */
   .p-page__info{grid-template-columns:7.5rem 1fr;}
-  .p-article__hero-caption{padding:6.25rem 3.25rem 2.625rem;}
+  /* 641px以上：ヒーロー画像にテキストを重ねる */
+  .p-article__hero{aspect-ratio:3/2;overflow:hidden;}
+  .p-article__hero img,.p-article__hero svg{height:100%;aspect-ratio:auto;}
+  .p-article__hero-caption{position:absolute;left:0;right:0;bottom:0;padding:6.25rem 3.25rem 2.625rem;background:linear-gradient(transparent 0%,rgba(6,2,3,.32) 42%,rgba(6,2,3,.86) 100%);color:var(--paper);}
+  .p-article__hero-caption .p-article__stars{margin-bottom:.75rem;letter-spacing:5px;font-size:1.125rem;text-shadow:0 0 .5rem rgba(247,206,90,.95),0 0 1.125rem rgba(247,206,90,.6),0 1px .25rem rgba(0,0,0,.45);}
+  .p-article__hero-caption .p-article__corp{color:rgba(255,255,255,.82);letter-spacing:.18em;margin-bottom:1rem;}
+  .p-article__hero-caption .p-article__title{color:var(--paper);font-weight:600;font-size:clamp(1.3125rem,2.8vw,2.125rem);letter-spacing:.07em;text-shadow:0 1px 1.5rem rgba(0,0,0,.45);}
+  .p-article__hero-caption .p-article__person{color:rgba(255,255,255,.72);margin-top:1rem;}
   .p-article__nav button{padding:1.5rem 1.25rem;}
   /* フォーム入力はSPでは16pxにして、iOSのフォーカス時ズームを防ぐ */
   .p-form__row input,.p-form__row textarea{font-size:.90625rem;}
