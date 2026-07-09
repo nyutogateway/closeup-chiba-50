@@ -11,7 +11,8 @@
 
 /* --- ヒーロー --- */
 .p-hero{position:relative;min-height:min(82vh,40rem);overflow:hidden;background:var(--ink);display:flex;isolation:isolate;}
-.p-hero__wall{position:absolute;inset:-1px;display:grid;grid-template-columns:repeat(auto-fill,minmax(8.75rem,1fr));grid-auto-rows:6.3125rem;align-content:start;opacity:.9;}
+/* SP：ヒーロー背景を10列×5行で敷き詰める（641px以上は自動レイアウトに戻す） */
+.p-hero__wall{position:absolute;inset:-1px;display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(5,1fr);align-content:stretch;opacity:.9;overflow:hidden;}
 .p-hero__mark{position:relative;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden;transition:box-shadow .5s;}
 .p-hero__mark img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.32) contrast(1.05);transition:filter .5s ease;}
 .p-hero__mark span{font-family:var(--serif);font-size:.6875rem;letter-spacing:.05em;color:rgba(206,187,142,.6);text-align:center;line-height:1.25;transition:color .5s;}
@@ -165,6 +166,8 @@
 
 /* tab: 641px〜（カルーセル3枚・PC寄りの余白へ） */
 @media(min-width:641px){
+  /* 641px以上：ヒーロー背景は自動レイアウトに戻す */
+  .p-hero__wall{grid-template-columns:repeat(auto-fill,minmax(8.75rem,1fr));grid-template-rows:none;grid-auto-rows:6.3125rem;align-content:start;}
   /* 641px以上は地図を通常サイズ・濃さに */
   #home::before{top:8.125rem;right:-3.75rem;width:min(48vw,37.5rem);height:80vh;}
   #home.is-map-on::before{opacity:.34;}
