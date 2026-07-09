@@ -122,7 +122,8 @@ function initCarousel(grp){
   if(len<=SHOW)return;
   originals.slice(-SHOW).map(c=>c.cloneNode(true)).forEach(c=>{c.setAttribute('aria-hidden','true');track.insertBefore(c,track.firstChild);});
   originals.slice(0,SHOW).map(c=>c.cloneNode(true)).forEach(c=>{c.setAttribute('aria-hidden','true');track.appendChild(c);});
-  let pos=SHOW, animating=false, timer=null;
+  let pos=SHOW, animating=false, timer=null, doneTimer=null, rzTimer=null;
+  const RM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const view=grp.querySelector('.p-group__view');
   const stepPx=()=>{const f=track.children[0];const gap=parseFloat(getComputedStyle(track).gap)||0;return f.offsetWidth+gap;};
   function apply(anim){
@@ -143,23 +144,42 @@ function initCarousel(grp){
     });
     if(curEl)curEl.textContent=((c0-SHOW)%len+len)%len+1;
   }
-  function go(n){if(animating)return;animating=true;pos+=n;apply(true);}
-  track.addEventListener('transitionend',e=>{
-    if(e.target!==track||e.propertyName!=='transform')return;  // カード側のtransition（scale等）は無視
+  // pos を有効範囲[SHOW, len+SHOW)へ補正（中断時に近いカードへ戻す）
+  function normalize(){ if(pos<SHOW||pos>=len+SHOW) pos=SHOW+(((pos-SHOW)%len)+len)%len; }
+  // アニメーション完了処理（無限ループの折り返しもここで）
+  function onDone(){
+    clearTimeout(doneTimer);
     animating=false;
     if(pos>=len+SHOW){pos=SHOW;apply(false);}
     else if(pos<SHOW){pos=len+SHOW-1;apply(false);}
+  }
+  function go(n){
+    if(animating)return;
+    animating=true; pos+=n; apply(true);
+    // transitionendが来なくても必ず復帰させる保険（ボタン/自動送りが固まる不具合対策）
+    clearTimeout(doneTimer); doneTimer=setTimeout(onDone,720);
+  }
+  track.addEventListener('transitionend',e=>{
+    if(e.target!==track||e.propertyName!=='transform')return;  // カード側のtransition（scale等）は無視
+    onDone();
   });
-  function start(){stop();timer=setInterval(()=>go(1),1000);}
+  function start(){stop();if(!RM)timer=setInterval(()=>go(1),1000);}  // reduced-motion時は自動送りしない
   function stop(){if(timer)clearInterval(timer);timer=null;}
   grp.querySelector('.p-group__prev').addEventListener('click',()=>{go(-1);start();});
   grp.querySelector('.p-group__next').addEventListener('click',()=>{go(1);start();});
   grp.addEventListener('mouseenter',stop);
   grp.addEventListener('mouseleave',start);
-  window.addEventListener('resize',()=>apply(false));
+  // リロード・画面幅変更・アニメ中断など、どんな状況でも現在のカードを中央へ戻して動き出す
+  function reset(){
+    clearTimeout(doneTimer);
+    animating=false;      // 固まったフラグを解除
+    normalize();          // 近いカードへ位置を補正
+    apply(false);         // 新レイアウトで中央に再配置（アニメなし）
+    start();              // 自動送り再開
+  }
+  window.addEventListener('resize',()=>{ clearTimeout(rzTimer); rzTimer=setTimeout(reset,150); });
   apply(false);
-  const RM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!RM)start();                             // 動きを抑える設定時は自動送りしない
+  start();
 }
 
 /* ---- 記事詳細 ---- */
