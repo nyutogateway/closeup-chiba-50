@@ -193,12 +193,14 @@ function openCard(no){
     </nav>`;
   document.getElementById('home').style.display='none';
   art.style.display='block';
+  document.body.classList.add('is-detail');   // 記事詳細中はチバテレ背景バッジを隠す
   location.hash='c'+n2(d.no);
   window.scrollTo(0,0);
 }
 function goHome(){
   document.getElementById('detail').style.display='none';
   document.getElementById('home').style.display='block';
+  document.body.classList.remove('is-detail');
   if(location.hash)history.pushState('',document.title,location.pathname+location.search);
   window.scrollTo(0,0);
 }

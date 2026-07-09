@@ -223,6 +223,10 @@ svg {
   width: auto;
   display: block;
 }
+/* 記事詳細（single page）では背景バッジを非表示 */
+body.is-detail .c-tv-badge {
+  display: none;
+}
 
 /* --- レスポンシブ（モバイルファースト＝min-width） --- */
 /* 641px〜：ヘッダーの余白・ナビをPC相当に */
