@@ -123,10 +123,18 @@ function initCarousel(grp){
   originals.slice(-SHOW).map(c=>c.cloneNode(true)).forEach(c=>{c.setAttribute('aria-hidden','true');track.insertBefore(c,track.firstChild);});
   originals.slice(0,SHOW).map(c=>c.cloneNode(true)).forEach(c=>{c.setAttribute('aria-hidden','true');track.appendChild(c);});
   let pos=SHOW, animating=false, timer=null;
+  const view=grp.querySelector('.p-group__view');
   const stepPx=()=>{const f=track.children[0];const gap=parseFloat(getComputedStyle(track).gap)||0;return f.offsetWidth+gap;};
   function apply(anim){
     track.style.transition=anim?'transform .6s cubic-bezier(.22,.61,.36,1)':'none';
-    track.style.transform=`translateX(${-pos*stepPx()}px)`;
+    let tx=-pos*stepPx();
+    // SP（1枚表示）はstep基準だと左寄せになるため、余白の半分だけ右へずらして中央寄せに
+    if(cols()===1){
+      const cs=getComputedStyle(view);
+      const inner=view.clientWidth-(parseFloat(cs.paddingLeft)||0)-(parseFloat(cs.paddingRight)||0);
+      tx+=(inner-track.children[0].offsetWidth)/2;
+    }
+    track.style.transform=`translateX(${tx}px)`;
     const c0=pos+Math.floor(cols()/2);
     [...track.children].forEach((c,i)=>{
       c.classList.toggle('is-center',i===c0);

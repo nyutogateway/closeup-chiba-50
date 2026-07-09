@@ -210,16 +210,16 @@ svg {
 /* --- チバテレ固定ロゴバッジ（常時表示） --- */
 .c-tv-badge {
   position: fixed;
-  left: 76%;
-  top: 46%;
+  left: 82%;
+  top: 88%;
   transform: translate(-50%, -50%);
   z-index: -1;
   line-height: 0;
-  opacity: 0.7;
+  opacity: 0.6;
   pointer-events: none;
 }
 .c-tv-badge img {
-  height: 2.75rem;
+  height: 2rem;
   width: auto;
   display: block;
 }

@@ -32,9 +32,9 @@
 
 /* --- 千葉県シルエットの背景（トップのみ・CONCEPT到達でスライドイン） --- */
 #home{position:relative;}
-/* SPでは本文と重なり読みにくいため非表示。641px以上で表示（下の@mediaで復帰） */
-#home::before{content:"";display:none;position:fixed;z-index:-1;top:8.125rem;right:-3.75rem;width:min(48vw,37.5rem);height:80vh;background:url(../assets/chiba.svg) center right/contain no-repeat;opacity:0;transform:translateX(4.375rem);transition:opacity .9s ease,transform 1.4s cubic-bezier(.16,1,.3,1);pointer-events:none;}
-#home.is-map-on::before{opacity:.34;transform:translateX(0);}
+/* 千葉県地図の背景。SPは小さめ・薄めで表示、641px以上で通常サイズ */
+#home::before{content:"";display:block;position:fixed;z-index:-1;top:7rem;right:-2.5rem;width:min(58vw,20rem);height:70vh;background:url(../assets/chiba.svg) center right/contain no-repeat;opacity:0;transform:translateX(4.375rem);transition:opacity .9s ease,transform 1.4s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+#home.is-map-on::before{opacity:.16;transform:translateX(0);}
 
 /* --- コンセプト --- */
 .p-concept{min-height:0;padding:4.5rem 0 2.5rem;display:flex;flex-direction:column;justify-content:center;}
@@ -74,7 +74,7 @@
 .p-group__count b{color:var(--ink);font-weight:700;font-size:1.0625rem;}
 .p-group__count i{font-style:normal;margin:0 .375rem;color:var(--line);}
 .p-group__track{position:relative;display:flex;gap:.875rem;will-change:transform;align-items:center;}
-.p-group__track .p-card{position:relative;flex:0 0 84%;}
+.p-group__track .p-card{position:relative;flex:0 0 80%;}
 
 /* --- 企業カード --- */
 .p-card{cursor:pointer;color:inherit;}
@@ -165,7 +165,9 @@
 
 /* tab: 641px〜（カルーセル3枚・PC寄りの余白へ） */
 @media(min-width:641px){
-  #home::before{display:block;}                        /* 千葉地図の背景を復帰 */
+  /* 641px以上は地図を通常サイズ・濃さに */
+  #home::before{top:8.125rem;right:-3.75rem;width:min(48vw,37.5rem);height:80vh;}
+  #home.is-map-on::before{opacity:.34;}
   .p-group{margin-top:7rem;}                            /* グループ間隔をPC向けに広く戻す */
   .p-group:first-child{margin-top:4rem;}
   .p-concept{min-height:100vh;padding:7.5rem 0;}
