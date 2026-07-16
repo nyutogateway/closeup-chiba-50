@@ -7,9 +7,13 @@ get_template_part('lib/temp_func');
 remove_action('wp_head', 'wp_generator');
 add_filter('emoji_svg_url', '__return_false');
 
-// BASE URL設定（前任テーマと同様に固定値で運用）
-define('BASE_URL', 'https://www.chiba-tv.com/closeup/wp-content/themes/theme');
-define('HOME_URL', 'https://www.chiba-tv.com/closeup/');
+// BASE URL設定
+// テーマ/サイトの実際の場所を指すようにする（本番・ローカルどちらでもCSS/JSが読める）。
+// 本番で固定パスに寄せる必要が出たら下のコメント値に差し替える。
+define('BASE_URL', get_template_directory_uri());
+define('HOME_URL', home_url('/'));
+// define('BASE_URL', 'https://www.chiba-tv.com/closeup/wp-content/themes/theme');
+// define('HOME_URL', 'https://www.chiba-tv.com/closeup/');
 
 // 画像の書き出し品質
 function custom_wp_editor_set_quality($quality){
