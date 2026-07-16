@@ -1,0 +1,55 @@
+<?php
+/*
+Template Name: プライバシーポリシーページテンプレート
+Template Post Type: page
+*/
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プライバシーポリシー | <?php bloginfo('name'); ?></title>
+  <?php get_template_part('lib/tpl/js', 'js'); ?>
+  <?php get_template_part('lib/tpl/css', 'css'); ?>
+  <?php get_template_part('lib/tpl/og', 'og'); ?>
+  <?php wp_head(); ?>
+</head>
+
+<body>
+<?php get_template_part('lib/tpl/body_before', 'body_before'); ?>
+<?php get_header(); ?>
+
+<main class="l-container">
+  <div class="p-page__inner">
+    <a class="p-article__back" href="<?php echo HOME_URL; ?>"><span>←</span> トップへ戻る</a>
+    <p class="p-page__kick">PRIVACY POLICY</p>
+    <h1 class="p-page__title u-serif">プライバシーポリシー</h1>
+    <section class="p-policy__section">
+      <h3>個人情報の利用目的</h3>
+      <p>本メディア上で収集した個人情報は、以下の目的で利用いたします。<br>1. 本メディアの利用状況を分析し、サービスの改善を図るため<br>2. ユーザーへのお知らせやマーケティング情報を提供するため<br>3. 他事業者へ業務を委託する場合（業務委託先に対しては、本メディアと同様の個人情報保護措置を求めます）</p>
+    </section>
+    <section class="p-policy__section">
+      <h3>個人情報の収集</h3>
+      <p>本メディアのサービス向上および機能実現のために、個人情報を収集する場合は、あらかじめその利用目的を明示し、同意を得た上で収集いたします。収集した個人情報は、同意いただいた利用目的の範囲内でのみ使用し、無断でその他の目的に利用することはありません。</p>
+    </section>
+    <section class="p-policy__section">
+      <h3>個人情報の安全管理</h3>
+      <p>本メディアは、個人情報の安全管理のために、以下の措置を講じます。<br>1. 社内規定および管理体制の整備<br>2. 従業員への適切な教育・指導<br>3. 個人情報への不正アクセス、紛失、破壊、改ざん、漏洩を防止するための技術的および物理的な対策<br>4. 継続的な運用改善の実施</p>
+    </section>
+    <section class="p-policy__section">
+      <h3>個人情報の開示・訂正・削除</h3>
+      <p>ご登録いただいた個人情報の開示・訂正・削除を希望される場合は、お問い合わせフォームよりご連絡ください。内容の確認を行い、速やかに対応いたします。ただし、情報の開示が困難な場合や、費用が発生する場合は、事前にその旨をご案内いたします。</p>
+    </section>
+  </div>
+</main>
+
+<?php get_footer(); ?>
+<?php get_template_part('lib/tpl/foot_js', 'foot_js'); ?>
+<?php wp_footer(); ?>
+</body>
+
+</html>

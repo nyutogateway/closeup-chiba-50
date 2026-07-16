@@ -1,0 +1,39 @@
+/* =============================================================
+   デザイントークン ｜ _variables.css
+   色・フォント・角丸などを一元管理する。
+   他のCSSではここで定義したCSS変数を使用し、値の直書きは禁止。
+   ============================================================= */
+:root {
+  /* --- 色（すべてhex） --- */
+  --paper: #FFFFFF;          /* 背景（地色） */
+  --ink: #0E0205;            /* 基本テキスト・黒 */
+  --muted: #6E6862;          /* 補助テキスト（グレー） */
+  --line: #E2E1DE;           /* 罫線 */
+  --card: #FFFFFF;           /* カード背景 */
+  --tile: #E7E6E0;           /* プレースホルダ */
+  --mag: #C0392B;            /* 赤（アクセント） */
+  --mag-ink: #AB1F24;        /* 赤（濃） */
+  --gold: #C09F4E;           /* 金 */
+  --gold-ink: #90600D;       /* 金（濃） */
+  --prism: linear-gradient(90deg, #90600D 0%, #C09F4E 40%, #AF8943 62%, #C0392B 100%);
+  --gold-lt: #EFC96B;        /* 金（明・星／ラベル） */
+  --text: #37342C;           /* 本文（黒に次ぐ濃さ） */
+  --paper-shade: #F1F1F3;    /* 背景グラデの端 */
+  --on-dark: #E9E5DB;        /* ダーク背景上のテキスト */
+  --on-dark-muted: #9A948A;  /* 〃 補助 */
+  --on-dark-faint: #5A554E;  /* 〃 かすれ */
+
+  /* --- フォント --- */
+  --font-base: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', YuGothic, 'Noto Sans JP', system-ui, sans-serif;
+  --serif: var(--font-base);   /* 見出し（現状は本文と同じ角ゴシック） */
+  --sans: var(--font-base);
+
+  /* --- 角丸 --- */
+  --radius: 2px;
+
+  /* --- ブレークポイント（min-width / モバイルファースト） ---
+     sp:  〜767px（デフォルト）
+     tab: 768px 〜
+     pc:  1024px 〜
+     ※ CSS変数はメディアクエリに使えないため各 @media に直接記述する */
+}
