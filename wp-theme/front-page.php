@@ -79,7 +79,7 @@ if ($total) {
     <section class="p-leaders" id="leaders">
       <div class="p-leaders__bar u-reveal">
         <p class="p-leaders__kick">LEADERS</p>
-        <h2 class="u-serif">千葉を牽引する<span class="p-leaders__num"><?php echo $total; ?></span>社</h2>
+        <h2 class="u-serif">千葉を牽引する<span class="p-leaders__num">50</span>社</h2>
         <div class="p-leaders__line"></div>
       </div>
     </section>
