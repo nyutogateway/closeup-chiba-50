@@ -8,12 +8,15 @@ remove_action('wp_head', 'wp_generator');
 add_filter('emoji_svg_url', '__return_false');
 
 // BASE URL設定
-// テーマ/サイトの実際の場所を指すようにする（本番・ローカルどちらでもCSS/JSが読める）。
-// 本番で固定パスに寄せる必要が出たら下のコメント値に差し替える。
+// CSS/JS/画像・ヘッダーフッターのリンクは「WPが実際に動いている場所」を指す。
+// → ステージング(xserver.umi.design/prod)でもそのまま表示・遷移でき、
+//    本番(chiba-tv)公開後は自動でchiba-tv側を指す。
 define('BASE_URL', get_template_directory_uri());
 define('HOME_URL', home_url('/'));
-// define('BASE_URL', 'https://www.chiba-tv.com/closeup/wp-content/themes/theme');
-// define('HOME_URL', 'https://www.chiba-tv.com/closeup/');
+
+// 公開URL（canonical専用）。環境に関係なく必ず本番(chiba-tv)へ向けるため固定値。
+// ステージングで動いていても canonical は chiba-tv に届く。
+define('PROD_URL', 'https://www.chiba-tv.com/closeup/');
 
 // 画像の書き出し品質
 function custom_wp_editor_set_quality($quality){
