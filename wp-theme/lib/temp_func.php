@@ -6,12 +6,20 @@
  *   デザインを変えないため、クラス名・階層・属性は変更しないこと。
  */
 
-/* SCFの画像IDを相対パスのURLに変換（前任テーマと同じ方式） */
-function cu_img_src($attachment_id) {
-  if (!$attachment_id) return '';
-  $img = wp_get_attachment_image_src($attachment_id, 'full', true);
-  if (!$img) return '';
-  return preg_replace('/https:\/\/umi\.design\/prod/', '', $img[0]);
+/* 画像フィールドの値を表示用URLに変換。
+   - 数値（添付ID）: メディアからURLを取得（SCF/前任と同じ方式）
+   - 文字列（URL）  : そのまま使用（インポート移行でURL文字列を入れた場合に対応）
+   いずれも umi.design/prod は相対パスへ */
+function cu_img_src($val) {
+  if (!$val) return '';
+  if (is_numeric($val)) {
+    $img = wp_get_attachment_image_src($val, 'full', true);
+    $src = $img ? $img[0] : '';
+  } else {
+    $src = (string) $val;
+  }
+  if (!$src) return '';
+  return preg_replace('#https?://[^/]*umi\.design/prod#', '', $src);
 }
 
 /* 投稿から表示用データを取り出す */
