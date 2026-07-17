@@ -6,6 +6,8 @@ get_template_part('lib/temp_func');
 
 remove_action('wp_head', 'wp_generator');
 add_filter('emoji_svg_url', '__return_false');
+// WP標準のcanonical出力を止める（canonicalは og.php で chiba-tv 固定で出すため）
+remove_action('wp_head', 'rel_canonical');
 
 // BASE URL設定
 // CSS/JS/画像・ヘッダーフッターのリンクは「WPが実際に動いている場所」を指す。
