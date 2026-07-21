@@ -9,7 +9,4 @@
     <div class="l-footer__copyright">Copyright © Chiba Television broadcasting Corp.</div>
   </div>
 </footer>
-
-<a class="c-tv-badge" href="https://www.chiba-tv.com/" target="_blank" rel="noopener" aria-label="チバテレ 千葉テレビ放送">
-  <img src="<?php echo BASE_URL; ?>/assets/img/footer_logo.png" alt="チバテレ 千葉テレビ放送">
-</a>
+<?php // チバテレ背景バッジは地図に重ねるトップ演出のため front-page.php でのみ出力（contact/policy/記事では出さない） ?>

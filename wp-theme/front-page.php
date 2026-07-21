@@ -104,6 +104,12 @@ if ($total) {
 </main>
 
 <?php get_footer(); ?>
+
+<!-- チバテレ背景バッジ（地図に重ねるトップ専用の演出） -->
+<a class="c-tv-badge" href="https://www.chiba-tv.com/" target="_blank" rel="noopener" aria-label="チバテレ 千葉テレビ放送">
+  <img src="<?php echo BASE_URL; ?>/assets/img/footer_logo.png" alt="チバテレ 千葉テレビ放送">
+</a>
+
 <?php get_template_part('lib/tpl/foot_js', 'foot_js'); ?>
 <?php wp_footer(); ?>
 </body>
