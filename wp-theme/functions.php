@@ -14,14 +14,18 @@ remove_action('wp_head', 'rel_canonical');
 //   ・本番(umi.design or chiba-tv でアクセス): 前任と同じく chiba-tv 固定
 //   ・テスト/ローカル(yutophp.net 等)         : 実ドメインを使い、サイト内を回遊できる
 $cu_host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
-if (strpos($cu_host, 'chiba-tv.com') !== false || strpos($cu_host, 'umi.design') !== false) {
+$cu_is_prod = (strpos($cu_host, 'chiba-tv.com') !== false || strpos($cu_host, 'umi.design') !== false);
+if ($cu_is_prod) {
   // 本番: 前任と同じ chiba-tv 固定（テーマフォルダ名は自動取得）
   define('BASE_URL', 'https://www.chiba-tv.com/closeup/wp-content/themes/' . get_template());
   define('HOME_URL', 'https://www.chiba-tv.com/closeup/');
+  // 本番は /closeup/ 配下なので、インポート画像のルート相対ベースに /closeup を付ける
+  define('UPLOADS_BASE', '/closeup/wp-content/uploads');
 } else {
   // テスト/ローカル: 実際に動いているドメイン
   define('BASE_URL', get_template_directory_uri());
   define('HOME_URL', home_url('/'));
+  define('UPLOADS_BASE', '/wp-content/uploads');
 }
 
 // 公開URL（canonical専用）。環境に関係なく必ず本番(chiba-tv)へ向けるため固定値。
@@ -56,6 +60,13 @@ add_filter('the_content', 'cu_article_figure_class');
 function cu_article_figure_class($content) {
   if (!is_single()) return $content;
   return preg_replace('/<figure\b[^>]*>/i', '<figure class="p-article__figure">', $content);
+}
+
+/* インポート画像(_import_photos)のパスを環境に合わせる（本番は /closeup 付与） */
+add_filter('the_content', 'cu_fix_import_img_path');
+function cu_fix_import_img_path($content) {
+  if (!defined('UPLOADS_BASE') || UPLOADS_BASE === '/wp-content/uploads') return $content;
+  return str_replace('"/wp-content/uploads/_import_photos/', '"' . UPLOADS_BASE . '/_import_photos/', $content);
 }
 
 add_theme_support('post-thumbnails');

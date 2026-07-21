@@ -19,7 +19,12 @@ function cu_img_src($val) {
     $src = (string) $val;
   }
   if (!$src) return '';
-  return preg_replace('#https?://[^/]*umi\.design/prod#', '', $src);
+  $src = preg_replace('#https?://[^/]*umi\.design/prod#', '', $src);
+  // インポート画像(_import_photos)のルート相対パスを環境に合わせる（本番は /closeup 付与）
+  if (defined('UPLOADS_BASE') && strpos($src, '/wp-content/uploads/_import_photos/') === 0) {
+    $src = UPLOADS_BASE . substr($src, strlen('/wp-content/uploads'));
+  }
+  return $src;
 }
 
 /* 投稿から表示用データを取り出す */
